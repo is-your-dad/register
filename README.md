@@ -1,42 +1,38 @@
-# is-your.dad
+<h1 align="center">is-your.dad</h1>
 
-> [中文版](./README.zh-CN.md)
+<p align="center"><strong>is-your.dad</strong> is a service that lets developers get a sweet-looking <code>.is-your.dad</code> subdomain for their personal websites.</p>
 
-Subdomain registry for `is-your.dad`. Open a PR adding a `domains/<name>.json` file and, once merged, GitHub Actions publishes the DNS records to Cloudflare via [DNSControl](https://docs.dnscontrol.org/).
+<p align="center"><a href="./README.zh-CN.md">中文版</a></p>
 
-## How to register
-1. Fork this repository.
-2. Create `domains/<your-subdomain>.json`. The filename becomes your subdomain.
-3. File structure:
+---
+
+# Register
+
+1. [Fork](https://github.com/is-your-dad/register/fork) the repository.
+2. Add a file at `domains/<your-subdomain>.json`. The filename becomes your subdomain:
    ```json
    {
      "owner": {
-       "username": "your-github-username",
-       "email": "optional@example.com"
+       "username": "your-github-username"
      },
      "records": {
        "CNAME": "your-target.example.com"
      }
    }
    ```
-   Supported record types: `A`, `AAAA`, `CAA`, `CNAME`, `DS`, `MX`, `NS`, `SRV`, `TLSA`, `TXT`, `URL`.
-4. Open a pull request. CI validates JSON structure, ownership, and record values.
-5. DNS goes live within a few minutes of merge.
+3. Open a pull request. *Keep an eye on it in case changes are needed.*
+   - If changes have been requested, please make them — otherwise **your PR will be closed**.
+4. Once your PR is merged, your DNS records will be published within a few minutes.
+5. Enjoy your new `.is-your.dad` subdomain!
 
-## Rules
-- Filenames must be lowercase, contain no consecutive `--`, and must not match any entry in `util/reserved.json` or `util/internal.json`.
-- `owner.username` must equal the PR author's GitHub username (maintainers in `util/trusted.json` excepted).
-- `CNAME` cannot be combined with other record types unless `"proxied": true` is set.
-- `A` records must be a string array and must not use public DNS resolver IPs.
+## Spam Pull Requests
 
-## Local validation
-```sh
-npm install
-npx ava tests/*.test.js
-```
+With the rise of invalid PRs, including PRs generated with AI, we reserve the right to:
 
-## Required repository secrets
-- `CLOUDFLARE_API_TOKEN` — used by `publish.yml` to push DNS records.
+- Close these PRs without explanation.
+- Block or limit the author's ability to interact with this repository.
+- Remove any existing domains owned by the author if connected to TOS-violating content.
 
-## Terms
-By registering a subdomain you agree to the [Terms of Service](./TERMS_OF_SERVICE.md).
+## Report Abuse
+
+If you find any subdomains being abused or breaking our [Terms of Service](./TERMS_OF_SERVICE.md), please [open an issue](https://github.com/is-your-dad/register/issues/new) with relevant evidence.
