@@ -1,42 +1,38 @@
-# is-your.dad
+<h1 align="center">is-your.dad</h1>
 
-> [English](./README.md)
+<p align="center"><strong>is-your.dad</strong> 是面向开发者的免费子域名服务,给你的个人网站一个漂亮的 <code>.is-your.dad</code> 子域名。</p>
 
-`is-your.dad` 子域名注册仓库。通过 PR 提交一个 `domains/<name>.json` 文件即可获得 `<name>.is-your.dad`,合并后由 GitHub Actions 通过 [DNSControl](https://docs.dnscontrol.org/) 推送到 Cloudflare。
+<p align="center"><a href="./README.md">English</a></p>
 
-## 提交流程
-1. Fork 本仓库。
-2. 在 `domains/` 下新建 `<your-subdomain>.json`,文件名即子域名。
-3. 文件结构:
+---
+
+# 注册
+
+1. [Fork](https://github.com/is-your-dad/register/fork) 本仓库。
+2. 在 `domains/<你的子域名>.json` 新建文件,文件名就是子域名:
    ```json
    {
      "owner": {
-       "username": "your-github-username",
-       "email": "optional@example.com"
+       "username": "你的-github-用户名"
      },
      "records": {
        "CNAME": "your-target.example.com"
      }
    }
    ```
-   支持的记录类型: `A`, `AAAA`, `CAA`, `CNAME`, `DS`, `MX`, `NS`, `SRV`, `TLSA`, `TXT`, `URL`。
-4. 开 PR。CI 会校验 JSON 结构、所有权、记录合法性等。
-5. 合并后几分钟内 DNS 生效。
+3. 提 Pull Request,**保持关注**以防需要修改。
+   - 如果被要求修改,请按要求改,否则 **PR 会被关闭**。
+4. PR 合并后几分钟内,DNS 记录就会生效。
+5. 享用你的 `.is-your.dad` 子域名!
 
-## 规则要点
-- 文件名必须小写、不含连续 `--`、不在 `util/reserved.json` / `util/internal.json` 列表中。
-- `owner.username` 必须与 PR 作者的 GitHub 用户名一致(`util/trusted.json` 中的维护者除外)。
-- `CNAME` 不能与其他记录共存(除非启用了 `"proxied": true` 的 Cloudflare 代理)。
-- `A` 记录必须为字符串数组,不能使用公共 DNS 解析器 IP。
+## Spam PR
 
-## 本地校验
-```sh
-npm install
-npx ava tests/*.test.js
-```
+针对低质或 AI 生成的 PR,我们保留以下权利:
 
-## 部署所需 secrets
-- `CLOUDFLARE_API_TOKEN`(用于 `publish.yml` 推送 DNS 记录)
+- 不解释直接关闭。
+- 屏蔽或限制作者与本仓库交互的能力。
+- 删除该作者已注册的、违反 TOS 的域名。
 
-## 服务条款
-注册子域名即表示您同意 [服务条款](./TERMS_OF_SERVICE.zh-CN.md)。
+## 举报滥用
+
+如果发现某些子域名被滥用或违反 [服务条款](./TERMS_OF_SERVICE.zh-CN.md),请[新建 Issue](https://github.com/is-your-dad/register/issues/new) 并附上证据。
