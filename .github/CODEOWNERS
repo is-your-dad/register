@@ -1,0 +1,11 @@
+* @wxul
+
+/domains/ @is-your-dad/maintainers
+
+*.md @is-your-dad/team
+TERMS_OF_SERVICE.md @wxul
+TERMS_OF_SERVICE.zh-CN.md @wxul
+
+/util/trusted.json @wxul
+/util/reserved.json @is-your-dad/team
+/util/internal.json @is-your-dad/team
